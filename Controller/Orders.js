@@ -3,12 +3,12 @@ const knex = require("knex")({
     connection: {
         host: "127.0.0.1",
         user: "root",
-        password: "Nav@gur1",
-        database: "Ecomerse_data"
+        password: "Pooja@123",
+        database: "order_anything"
     },
 });
 
-Orders = (req, res) => {
+const Orders = (req, res) => {
     get_token = req.data
     knex('Orders').insert({
         date_time: new Date(),
@@ -24,7 +24,7 @@ Orders = (req, res) => {
     })
 }
 
-Orders_All = (req, res) => {
+const Orders_All = (req, res) => {
     knex('products').join('Orders', 'products.product_id', '=', 'Orders.product_id').select("*")
         .then((rows) => {
             console.log(rows)

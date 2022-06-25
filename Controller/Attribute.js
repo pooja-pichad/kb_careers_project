@@ -3,12 +3,12 @@ const knex = require("knex")({
     connection: {
         host: "127.0.0.1",
         user: "root",
-        password: "Nav@gur1",
-        database: "Ecomerse_data"
+        password: "Pooja@123",
+        database: "order_anything"
     },
 });
 
-Attributes = (req, res) => {
+const Attributes = (req, res) => {
     get_token = req.data
     knex("registration").where({ user_id: get_token.user_id })
         .then(() => {

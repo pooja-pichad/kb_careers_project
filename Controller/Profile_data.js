@@ -6,12 +6,12 @@ const knex = require("knex")({
     connection: {
         host: "127.0.0.1",
         user: "root",
-        password: "Nav@gur1",
-        database: "Ecomerse_data"
+        password: "Pooja@123",
+        database: "order_anything"
     },
 });
 
-Signup = (req, res) => {
+const Signup = (req, res) => {
     const user = req.body;
     bcrypt.hash(user.password, 10).then((hash) => {
         knex("registration").insert({
@@ -32,7 +32,7 @@ Signup = (req, res) => {
     })
 }
 
-Login = (req, res) => {
+const Login = (req, res) => {
     knex.select("*").
     from('registration').where({ Email: req.body.Email })
         .then(registration => {
@@ -56,7 +56,7 @@ Login = (req, res) => {
         });
 };
 
-profile_Data = (req, res) => {
+const profile_Data = (req, res) => {
     get_token = req.data
     console.log(get_token)
     knex.select("*").from("registration").where({ user_id: get_token.user_id })
@@ -68,7 +68,7 @@ profile_Data = (req, res) => {
         });
 };
 
-profile_Data_update = (req, res) => {
+const profile_Data_update = (req, res) => {
     get_token = req.data
     knex("registration").where({ user_id: get_token.user_id }).update({
             Name: req.body.Name,
@@ -88,7 +88,7 @@ profile_Data_update = (req, res) => {
 
 };
 
-profile_Data_Delete = (req, res) => {
+const profile_Data_Delete = (req, res) => {
     get_token = req.data
     knex("registration").select("*").where({ user_id: get_token.user_id })
         .del()
